@@ -1,19 +1,22 @@
 import * as React from 'react';
-import './App.css';
+import { observer, inject } from 'mobx-react';
+import PostInput from './components/PostInput';
+import PostList from './components/PostList';
+import { PostStore } from './stores/postStore';
 
-const logo = require('./logo.svg');
+interface AppProps {
+  postStore?: PostStore;
+}
 
-class App extends React.Component<{}, {}> {
+@inject('postStore')
+@observer
+class App extends React.Component<AppProps, {}> {
   render() {
+    const postStore = this.props.postStore as PostStore;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <PostInput addPost={postStore.addPost} />
+        <PostList posts={postStore.posts} deletePost={postStore.deletePost} />
       </div>
     );
   }
