@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 yarn.lock
+
+# protect database config
+src/database
