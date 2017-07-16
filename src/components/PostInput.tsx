@@ -56,7 +56,7 @@ class PostInput extends React.Component<PostInputProps, PostInputState> {
     const file = this.state.file;
     if (text !== null && text.value !== '') {
         this.props.addPost(text.value, file);
-    }else if ((text !== null && text.value === '' || text == null) && file !== null) {
+    }else if ((text !== null && text.value === '' || text === null) && file !== null) {
         this.props.addPost('', file);
     }
   }
